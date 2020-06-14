@@ -28,6 +28,7 @@ public class PosicaoXadrez {
 	}
 	
 	protected static PosicaoXadrez fromPosition(Posicao posicao) {
+		System.out.println('a' - posicao.getColuna());
 		return new PosicaoXadrez((char)('a' - posicao.getColuna()), 8 - posicao.getLinha() );
 	}
 	

@@ -27,7 +27,19 @@ public class PartidaXadrez {
 		tabuleiro.colocarPeca(peca, new PosicaoXadrez(coluna, linha).toPosition());
 	}
 	private void iniciarConfig() {
-		colocarNovaPeca('b', 6, new Torre(tabuleiro, Cor.BRACA));
-		colocarNovaPeca('e', 8, new Rei(tabuleiro, Cor.PRETA));
+		
+		colocarNovaPeca('c', 1, new Torre(tabuleiro, Cor.BRACA));
+		colocarNovaPeca('c', 2, new Torre(tabuleiro, Cor.BRACA));
+		colocarNovaPeca('d', 2, new Torre(tabuleiro, Cor.BRACA));
+		colocarNovaPeca('e', 2, new Torre(tabuleiro, Cor.BRACA));
+		colocarNovaPeca('e', 1, new Torre(tabuleiro, Cor.BRACA));
+		colocarNovaPeca('d', 1, new Rei(tabuleiro, Cor.BRACA));
+
+		colocarNovaPeca('c', 7, new Torre(tabuleiro, Cor.PRETA));
+		colocarNovaPeca('c', 8, new Torre(tabuleiro, Cor.PRETA));
+		colocarNovaPeca('d', 7, new Torre(tabuleiro, Cor.PRETA));
+		colocarNovaPeca('e', 7, new Torre(tabuleiro, Cor.PRETA));
+		colocarNovaPeca('e', 8, new Torre(tabuleiro, Cor.PRETA));
+		colocarNovaPeca('d', 8, new Torre(tabuleiro, Cor.PRETA));
 	}
 }
