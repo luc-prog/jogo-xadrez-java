@@ -29,6 +29,7 @@ public class PartidaXadrez {
 		Posicao pInicial = posicInicial.toPosition();
 		Posicao pFinal = posicFinal.toPosition();
 		validarPosicInicial(pInicial);
+		validarPosicFinal(pInicial, pFinal);
 		Peca pecaCapturada = fazerMover(pInicial, pFinal);
 		return (PecaXadrez)pecaCapturada;
 	}
@@ -47,6 +48,12 @@ public class PartidaXadrez {
 		}
 		if (!tabuleiro.peca(posicao).existeMovimento()) {
 			throw new ExcecaoXadrez("Não existe movimento possivel para a peça escolhida");
+		}
+	}
+	
+	private void validarPosicFinal(Posicao pInicial, Posicao pFinal) {
+		if (!tabuleiro.peca(pInicial).possivelMovimento(pFinal)) {
+			throw new ExcecaoXadrez("Peça escolhida nao pode mover para a posição de destino");
 		}
 	}
 	
