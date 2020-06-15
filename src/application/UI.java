@@ -65,7 +65,7 @@ public class UI {
 	
 	public static void printTabuleiro(PecaXadrez[][] peca, boolean[][] possiveisMovimentos) {
 
-		for (int i = 0; i < peca.length; i++) {
+		for (int i=0; i<peca.length; i++) {
 			System.out.print((8 - i) + " ");
 			for (int j = 0; j < peca.length; j++) {
 				printPeca(peca[i][j], possiveisMovimentos[i][j]);
