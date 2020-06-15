@@ -25,6 +25,11 @@ public class PartidaXadrez {
 		return mat;
 	}
 	
+	public boolean[][] possivelMovimentos(PosicaoXadrez pInicial){
+		Posicao posicao = pInicial.toPosition();
+		validarPosicInicial(posicao);
+		return tabuleiro.peca(posicao).possiveisMovimentos();
+	}
 	public PecaXadrez movimentoXadrez(PosicaoXadrez posicInicial, PosicaoXadrez posicFinal) {
 		Posicao pInicial = posicInicial.toPosition();
 		Posicao pFinal = posicFinal.toPosition();
