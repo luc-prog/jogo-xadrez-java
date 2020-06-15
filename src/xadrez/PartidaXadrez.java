@@ -43,7 +43,10 @@ public class PartidaXadrez {
 	
 	private void validarPosicInicial(Posicao posicao) {
 		if (!tabuleiro.existePeca(posicao)) {
-			throw new ExcecaoXadrez("Peça não existe no tabuleiro");
+			throw new ExcecaoXadrez("peça não existe no tabuleiro");
+		}
+		if (!tabuleiro.peca(posicao).existeMovimento()) {
+			throw new ExcecaoXadrez("Não existe movimento possivel para a peça escolhida");
 		}
 	}
 	
