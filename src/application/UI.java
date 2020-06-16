@@ -61,14 +61,19 @@ public class UI {
 		printPecasCapturadas(capturada);
 		System.out.println();
 		System.out.println("Turn: " + pXadrez.getTurno());
-		System.out.println("Waiting player: " + pXadrez.getJogadorAtual());
 		
-		if (pXadrez.getCheck()) {
-			System.out.println("CHECK!");
+		if (!pXadrez.getCheckMate()) {
+			System.out.println("Waiting player: " + pXadrez.getJogadorAtual());
+			if (pXadrez.getCheck()) {
+				System.out.println("CHECK!");
+			}
+		}
+		else {
+			System.out.println("CHECKMATE!");
+			System.out.println("Winner: " + pXadrez.getJogadorAtual());
 		}
 	}
 	public static void printTabuleiro(PecaXadrez[][] peca) {
-
 		for (int i = 0; i < peca.length; i++) {
 			System.out.print((8 - i) + " ");
 			for (int j = 0; j < peca.length; j++) {
@@ -97,7 +102,7 @@ public class UI {
 			System.out.print(ANSI_BLUE_BACKGROUND);
 		}
 		if (peca == null) {
-			System.out.print("-" + ANSI_RESET);
+			System.out.print(ANSI_RED + "-" + ANSI_RESET);
 		} else {
 			if (peca.getCor() == Cor.BRANCA) {
 				System.out.print(ANSI_WHITE + peca + ANSI_RESET);
