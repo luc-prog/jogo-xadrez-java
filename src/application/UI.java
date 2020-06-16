@@ -1,8 +1,11 @@
 package application;
 
 
+import java.util.Arrays;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import xadrez.Cor;
 import xadrez.PartidaXadrez;
@@ -48,15 +51,21 @@ public class UI {
 			return new PosicaoXadrez(coluna, linha);
 		}
 		catch (RuntimeException e) {
-			throw new InputMismatchException("Erro ao ler a posição. Os valores válidos são de a1 a h8.");
+			throw new InputMismatchException("Error reading ChessPosition. Valid values are from a1 to h8.");
 		}
 	}
 	
-	public static void printPartida(PartidaXadrez pXadrez) {
+	public static void printPartida(PartidaXadrez pXadrez, List<PecaXadrez> capturada) {
 		printTabuleiro(pXadrez.getPecas());
 		System.out.println();
-		System.out.println("Turno: " + pXadrez.getTurno());
-		System.out.println("Esperando jogador das peças: " + pXadrez.getJogadorAtual());
+		printPecasCapturadas(capturada);
+		System.out.println();
+		System.out.println("Turn: " + pXadrez.getTurno());
+		System.out.println("Waiting player: " + pXadrez.getJogadorAtual());
+		
+		if (pXadrez.getCheck()) {
+			System.out.println("CHECK!");
+		}
 	}
 	public static void printTabuleiro(PecaXadrez[][] peca) {
 
@@ -90,12 +99,26 @@ public class UI {
 		if (peca == null) {
 			System.out.print("-" + ANSI_RESET);
 		} else {
-			if (peca.getCor() == Cor.BRACA) {
+			if (peca.getCor() == Cor.BRANCA) {
 				System.out.print(ANSI_WHITE + peca + ANSI_RESET);
 			} else {
 				System.out.print(ANSI_YELLOW + peca + ANSI_RESET);
 			}
 		}
 		System.out.print(" ");
+	}
+	
+	private static void printPecasCapturadas(List<PecaXadrez> capturada) {
+		List<PecaXadrez> branca = capturada.stream().filter(x -> x.getCor() == Cor.BRANCA).collect(Collectors.toList());
+		List<PecaXadrez> preta = capturada.stream().filter(x -> x.getCor() == Cor.PRETA).collect(Collectors.toList());
+		System.out.println("Captured pieces:");
+		System.out.print("White: ");
+		System.out.print(ANSI_WHITE);
+		System.out.println(Arrays.toString(branca.toArray()));
+		System.out.print(ANSI_RESET);
+		System.out.print("Black: ");
+		System.out.print(ANSI_YELLOW);
+		System.out.println(Arrays.toString(preta.toArray()));
+		System.out.print(ANSI_RESET);
 	}
 }
