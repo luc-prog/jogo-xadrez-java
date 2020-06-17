@@ -7,6 +7,7 @@ import boardgame.Tabuleiro;
 public abstract class PecaXadrez extends Peca{
 	
 	private Cor cor;
+	private int contarMovimento;
 
 	public PecaXadrez(Tabuleiro tabuleiro, Cor cor) {
 		super(tabuleiro);
@@ -21,7 +22,18 @@ public abstract class PecaXadrez extends Peca{
 		return PosicaoXadrez.fromPosition(posicao);
 	}
 	
-
+	public int getContarMovimento() {
+		return contarMovimento;
+	}
+	
+	public void aumentarContagemMovimento() {
+		contarMovimento++;
+	}
+	
+	public void diminuirContagemMovimento() {
+		contarMovimento++;
+	}
+	
 	protected boolean existePecaOponente(Posicao posicao) {
 		PecaXadrez p = (PecaXadrez)getTabuleiro().peca(posicao);
 		return p != null && p.getCor() != cor;
